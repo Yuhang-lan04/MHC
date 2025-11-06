@@ -1,6 +1,6 @@
-import torch  # 导入PyTorch库
-from torch import nn  # 从torch中导入神经网络模块
-from torch.nn import functional as F  # 从torch.nn中导入功能模块
+import torch 
+from torch import nn  
+from torch.nn import functional as F 
 
 class MultiViewNet(nn.Module):
     def __init__(self, y_dim, bit, norm=True, mid_num1=1024*8, mid_num2=1024*8, hiden_layer=3):
@@ -31,3 +31,4 @@ class MultiViewNet(nn.Module):
                 norm_x = torch.norm(out, dim=1, keepdim=True)
             out = out / norm_x
         return out
+
