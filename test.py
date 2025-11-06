@@ -12,7 +12,7 @@ def test_MHC(models, mul_X_rtest, mul_X_hashes, labels, device, args):
     
     start_time = time.time()
     batch_size = args.batch_size
-    num_batches = (num_X_test + batch_size - 1) // batch_size  # 计算批次数量，向上取整
+    num_batches = (num_X_test + batch_size - 1) // batch_size  
     for batch_idx in range(num_batches):
         start_idx = batch_idx * batch_size
         end_idx = min((batch_idx + 1) * batch_size, num_X_test)
@@ -33,6 +33,7 @@ def test_MHC(models, mul_X_rtest, mul_X_hashes, labels, device, args):
     end_time = time.time()
 
     return yy_pred, end_time - start_time
+
 
 
 
