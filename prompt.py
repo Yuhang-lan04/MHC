@@ -44,7 +44,7 @@ def encode_description(description, tokenizer, bert_model):
 
     with torch.no_grad():
         outputs = bert_model(**inputs_text)
-        embedding = outputs.last_hidden_state.mean(dim=1).squeeze().cpu().numpy()  # 获取平均池化后的嵌入
+        embedding = outputs.last_hidden_state.mean(dim=1).squeeze().cpu().numpy()  
     
     return embedding
 
@@ -63,7 +63,6 @@ if __name__ == "__main__":
     print("use cuda: {}".format(args.cuda))
 
     
-    # 加载数据
     with open(args.dataPath + '/' + args.dataset + '/Y.pkl', 'rb') as f:
         label = pickle.load(f)
     first_nonzero_indices = [np.argmax(row != 0) for row in label]
@@ -78,4 +77,5 @@ if __name__ == "__main__":
         bert_model = BertModel.from_pretrained('bert-base-uncased').to("cuda")
         expanded_labels = expand_label_with_prompt1(label, tokenizer, bert_model)
         np.save(expanded_labels_file, expanded_labels)
+
 
